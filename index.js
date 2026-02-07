@@ -7,11 +7,7 @@ const todoRoutes = require("./routes/todoRoutes")
 const app = express();
 const PORT = process.env.PORT;
 DbConnection();
-app.use(
-    cors({
-        origin:"https://todo-server-bfjv.onrender.com"
-    })
-)
+app.use(cors());
 app.use(express.json());
 
 app.use("/todos",todoRoutes)
