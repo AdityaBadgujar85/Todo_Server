@@ -61,7 +61,7 @@ exports.editTask = async(req,res)=>{
     res.status(201).json({
         success:true,
         message:"Task Updated Successfully",
-        updatedTask:updateTask
+        data:updateTask
     })
 
 }
