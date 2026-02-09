@@ -16,11 +16,11 @@ exports.getAllTasks = async(req,res) =>{
 }
 exports.getTask = async(req,res)=>{
     const {id} = req.params
-    const todoSearch = await todomodel.findById(id)
+    let todoSearch = await todomodel.findById(id)
     if(!todoSearch){
        todoSearch = await todomodel.findOne({todo:id})
     }
-    if(!todoById){
+    if(!todoSearch){
         return res.status(404).json({
             success:false,
             message: "Sorry no that found"
@@ -36,7 +36,7 @@ exports.getTask = async(req,res)=>{
 exports.addTask = async(req,res) => { 
     const {data} = req.body
     if(!data || Object.keys(data).length===0){
-        return res.status(404).json({
+        return res.status(400).json({
             success:false,
             message:" fill input"
         })
@@ -56,7 +56,7 @@ exports.editTask = async(req,res)=>{
     const updateTask = await todomodel.findByIdAndUpdate({_id:id},data,{new:true})
 
     if(!updateTask){
-        res.status(404).json({
+       return res.status(404).json({
             success: false, 
             message: "task not found"
         })
