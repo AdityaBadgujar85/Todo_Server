@@ -16,12 +16,7 @@ exports.getAllTasks = async(req,res) =>{
 }
 exports.getTask = async(req,res)=>{
     const {id} = req.params
-    let todoSearch = null
-
-    if(id.length === 24){
-        todoSearch = await todomodel.findById(id)
-    }
-
+    let todoSearch = await todomodel.findOne({_id:id})
     if(!todoSearch){
        todoSearch = await todomodel.findOne({todo:id})
     }
