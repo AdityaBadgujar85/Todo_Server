@@ -16,9 +16,9 @@ exports.getAllTasks = async(req,res) =>{
 }
 exports.getTask = async(req,res)=>{
     const {id} = req.params
-    let todoSearch = await todomodel.findOne({_id:id})
+    let todoSearch = await todomodel.findOne({todo:id})
     if(!todoSearch){
-       todoSearch = await todomodel.findOne({todo:id})
+       todoSearch = await todomodel.findOne({_id:id})
     }
     if(!todoSearch){
         return res.status(404).json({
