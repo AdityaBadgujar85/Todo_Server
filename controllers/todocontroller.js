@@ -16,7 +16,10 @@ exports.getAllTasks = async(req,res) =>{
 }
 exports.getTask = async(req,res)=>{
     const {id} = req.params
-    const todoById = await todomodel.findById(id)
+    const todoSearch = await todomodel.findById(id)
+    if(!todoSearch){
+       todoSearch = await todomodel.findOne({todo:id})
+    }
     if(!todoById){
         return res.status(404).json({
             success:false,
@@ -26,7 +29,7 @@ exports.getTask = async(req,res)=>{
     res.status(200).json({
         success:true, 
         message: "Task found",
-        task: todoById
+        task: todo
     })
 }
 
