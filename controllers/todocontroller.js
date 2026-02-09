@@ -29,7 +29,7 @@ exports.getTask = async(req,res)=>{
     res.status(200).json({
         success:true, 
         message: "Task found",
-        task: todo
+        task: todoSearch
     })
 }
 

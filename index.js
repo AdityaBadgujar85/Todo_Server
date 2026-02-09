@@ -5,7 +5,7 @@ const DbConnection = require('./databaseConnection')
 dotenv.config();
 const todoRoutes = require("./routes/todoRoutes")
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
 DbConnection();
 app.use(cors());
 app.use(express.json());
